@@ -7,32 +7,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= link_to "Sign Up", new_user_registration_path %>
-  <% if user_signed_in? %>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign In", new_user_session_path %>
-  <% end %>
-  <div class="sidebar">
-    <ul>
-      <li class="category">Website</li>
-      <li><%= link_to "Blog", root_path %></li>
-      <li>About</li>
-    </ul>
-  </div>
+  <div class="header">
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+        <% if user_signed_in? %>
+          <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Sign Up", new_user_registration_path %>
+        <% end %>
+    </div>
+    <br>
+
 
   <div id="main_content">
-    <div id="header">
-      <p>All posts</p>
+    <div class="container">
+      <div class="row">
+        <% if current_page?(root_path) %>
+          <div class="col-sm-4">
+            All posts
+          </div>
+        <% else %>
+          <div class="col-sm-4">
+            <%= link_to "Back to All Posts", root_path %>
+          </div>
+        <% end %>
+        <div class="com-sm-4">
+          <%= link_to "New Post", new_post_path %>
+        </div>
+      </div>
 
-      <%= link_to "New Post", new_post_path %>
+      <%= yield %>
 
     </div>
-
-    <%= yield %>
-
   </div>
 
 

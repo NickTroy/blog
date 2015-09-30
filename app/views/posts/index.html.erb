@@ -1,8 +1,13 @@
 <%=  @posts.each do |post| %>
-  <div>
-    <h2><%= link_to post.title, post%></h2>
+  <div class="container">
+    <h2 class="post_title"><%= link_to post.title, post%></h2>
+    <div class="post_body">
+    	<%= post.body %>
+    </div>
+    <br>
     <p>
-    Created at <%= post.created_at.strftime("%d %m %Y") %> by <%= post.user.email %>
+      Created at <%= post.created_at.strftime("%d %m %Y") %> by <%= post.user.email %>
     </p>
   </div>
 <% end %>
+
